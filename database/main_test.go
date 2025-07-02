@@ -21,9 +21,14 @@ func init() {
 }
 
 func TestMain(m *testing.M) {
-
-	dbDriver := os.Getenv("DB_DRIVER")
-	dbURL := os.Getenv("DB_URL")
+	var dbDriver, dbURL string
+	if err := godotenv.Load("../.env"); err != nil {
+		dbDriver = "postgres"
+		dbURL = "postgres://env_user:secret@localhost:5432/simple_bank?sslmode=disable"
+	} else {
+		dbDriver = os.Getenv("DB_DRIVER")
+		dbURL = os.Getenv("DB_URL")
+	}
 
 	conn, err := sql.Open(dbDriver, dbURL)
 	if err != nil {
