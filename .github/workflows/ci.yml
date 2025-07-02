@@ -13,6 +13,9 @@ jobs:
   build:
     name: "Build"
     runs-on: ubuntu-latest
+    env:
+      DB_DRIVER: ${{ secrets.DB_DRIVER }}
+      DB_URL: ${{ secrets.DB_URL }}
 
     services:
       postgres:
@@ -42,7 +45,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: run migrations
-        run: goose -dir "./db/migrations" postgres "postgres://env_user:secret@localhost:5432/simple_bank?sslmode=disable" up
+        run: goose -dir "./db/migrations" postgres "${{ secrets.DB_URL }}" up
 
       - name: go build
         run: go build -v ./...

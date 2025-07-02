@@ -13,8 +13,14 @@ import (
 var testQueries *Queries
 var testDB *sql.DB
 
+func init() {
+	// Load .env file if it exists, but ignore error if file is missing
+	if err := godotenv.Load("../.env"); err != nil {
+		log.Println("No .env file found or failed to load, continuing...")
+	}
+}
+
 func TestMain(m *testing.M) {
-	godotenv.Load("../.env")
 
 	dbDriver := os.Getenv("DB_DRIVER")
 	dbURL := os.Getenv("DB_URL")
