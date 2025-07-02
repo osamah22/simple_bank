@@ -10,7 +10,6 @@ import (
 )
 
 func TestTransferTx(t *testing.T) {
-	t.Parallel()
 	// Initialize
 	store := NewStore(testDB)
 	account1 := createRandomAccount(t)
@@ -98,8 +97,6 @@ func TestTransferTx(t *testing.T) {
 }
 
 func TestTransferTxDeadlock(t *testing.T) {
-	t.Parallel()
-
 	// Initialize
 	store := NewStore(testDB)
 	account1 := createRandomAccount(t)
@@ -152,8 +149,6 @@ func TestTransferTxDeadlock(t *testing.T) {
 }
 
 func TestTransferTxRandomAmounts(t *testing.T) {
-	t.Parallel()
-
 	// Initialize
 	store := NewStore(testDB)
 	account1 := createRandomAccount(t)
