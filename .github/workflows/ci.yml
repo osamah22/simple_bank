@@ -33,7 +33,6 @@ jobs:
         uses: actions/setup-go@v4
         with:
           go-version: "1.24.4"
-          cache: false
         id: go
 
       - name: install goose migration manager

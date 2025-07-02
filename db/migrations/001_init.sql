@@ -1,6 +1,8 @@
 -- +goose Up
 
 BEGIN;
+CREATE EXTENSION IF NOT EXISTS pgcrypto; --an extension responsible for generating uuid
+
 CREATE TABLE accounts (
   id uuid PRIMARY KEY DEFAULT (gen_random_uuid()),
   owner VARCHAR NOT NULL,
